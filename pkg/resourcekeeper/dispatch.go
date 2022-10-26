@@ -19,10 +19,8 @@ package resourcekeeper
 import (
 	"context"
 
-	"github.com/pkg/errors"
-	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
-
 	"github.com/oam-dev/kubevela/apis/core.oam.dev/common"
+	"github.com/oam-dev/kubevela/apis/core.oam.dev/v1alpha1"
 	"github.com/oam-dev/kubevela/pkg/auth"
 	"github.com/oam-dev/kubevela/pkg/multicluster"
 	"github.com/oam-dev/kubevela/pkg/oam"
@@ -30,6 +28,8 @@ import (
 	"github.com/oam-dev/kubevela/pkg/utils/apply"
 	velaerrors "github.com/oam-dev/kubevela/pkg/utils/errors"
 	"github.com/oam-dev/kubevela/pkg/utils/parallel"
+	"github.com/pkg/errors"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 )
 
 // MaxDispatchConcurrent is the max dispatch concurrent number
@@ -138,6 +138,10 @@ func (h *resourceKeeper) dispatch(ctx context.Context, manifests []*unstructured
 		ao := applyOpts
 		if h.isShared(manifest) {
 			ao = append([]apply.ApplyOption{apply.SharedByApp(h.app)}, ao...)
+		}
+		manifest, err := ApplyStrategies(applyCtx, h, manifest, v1alpha1.ApplyOnceStrategyOnAppUpdate)
+		if err != nil {
+			return errors.Wrapf(err, "failed to apply once policy for application %s,%s", h.app.Name, err.Error())
 		}
 		return h.applicator.Apply(applyCtx, manifest, ao...)
 	}, manifests, MaxDispatchConcurrent)
