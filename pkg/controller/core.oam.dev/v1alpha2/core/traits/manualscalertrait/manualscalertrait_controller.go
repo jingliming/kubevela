@@ -194,9 +194,11 @@ func (r *Reconciler) scaleResources(ctx context.Context, manualScalar oamv1alpha
 }
 
 // locateReplicaField call openapi RESTFUL end point to fetch the schema of a given resource and try to see
-// 	if it has a spec.replicas filed that is of type integer. We will apply duck typing to modify the fields there
-//  assuming that the fields is used to control the number of instances of this resource
-//  NOTE: This only works if the resource CRD has a structural schema, all `apiextensions.k8s.io/v1` CRDs do
+//
+//		if it has a spec.replicas filed that is of type integer. We will apply duck typing to modify the fields there
+//	 assuming that the fields is used to control the number of instances of this resource
+//	 NOTE: This only works if the resource CRD has a structural schema, all `apiextensions.k8s.io/v1` CRDs do
+//
 // https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#specifying-a-structural-schema
 func locateReplicaField(document openapi.Resources, res *unstructured.Unstructured) bool {
 	// this is the most common path for replicas fields

@@ -153,7 +153,7 @@ CHECKNEXT:
 	return res, nil
 }
 
-//  merge2DefMap will parse annotation in addon's app to 'created x-definition'. Then stroe them in defMap
+// merge2DefMap will parse annotation in addon's app to 'created x-definition'. Then stroe them in defMap
 func merge2DefMap(defType string, defNames string, defMap map[string]bool) {
 	list := strings.Split(defNames, ",")
 	template := "addon-%s-%s"

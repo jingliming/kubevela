@@ -108,7 +108,7 @@ func (wo wfOperator) Resume(ctx context.Context, app *v1beta1.Application) error
 }
 
 // Rollback a running in middle state workflow.
-//nolint
+// nolint
 func (wo wfOperator) Rollback(ctx context.Context, app *v1beta1.Application) error {
 	if oam.GetPublishVersion(app) == "" {
 		return fmt.Errorf("app without public version cannot rollback")

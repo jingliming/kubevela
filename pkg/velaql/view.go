@@ -48,8 +48,6 @@ import (
 )
 
 const (
-	qlNs = "vela-system"
-
 	// ViewTaskPhaseSucceeded means view task run succeeded.
 	ViewTaskPhaseSucceeded = "succeeded"
 )
@@ -71,7 +69,7 @@ func NewViewHandler(cli client.Client, cfg *rest.Config, dm discoverymapper.Disc
 		cfg:       cfg,
 		dm:        dm,
 		pd:        pd,
-		namespace: qlNs,
+		namespace: types.DefaultKubeVelaNS,
 	}
 }
 

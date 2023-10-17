@@ -19,6 +19,9 @@ package resourcekeeper
 import (
 	"context"
 
+	"github.com/pkg/errors"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
+
 	"github.com/oam-dev/kubevela/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela/apis/core.oam.dev/v1alpha1"
 	"github.com/oam-dev/kubevela/pkg/auth"
@@ -28,8 +31,6 @@ import (
 	"github.com/oam-dev/kubevela/pkg/utils/apply"
 	velaerrors "github.com/oam-dev/kubevela/pkg/utils/errors"
 	"github.com/oam-dev/kubevela/pkg/utils/parallel"
-	"github.com/pkg/errors"
-	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 )
 
 // MaxDispatchConcurrent is the max dispatch concurrent number

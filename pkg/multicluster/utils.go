@@ -21,8 +21,9 @@ package multicluster
 import (
 	"context"
 	"fmt"
-	prismclusterv1alpha1 "github.com/kubevela/prism/pkg/apis/cluster/v1alpha1"
 	"time"
+
+	prismclusterv1alpha1 "github.com/kubevela/prism/pkg/apis/cluster/v1alpha1"
 
 	errors2 "github.com/pkg/errors"
 	v1 "k8s.io/api/core/v1"

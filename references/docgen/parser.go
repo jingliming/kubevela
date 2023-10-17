@@ -152,6 +152,7 @@ func (ref *ParseReference) prepareConsoleParameter(tableName string, parameterLi
 
 // parseParameters parses every parameter
 // TODO(wonderflowe2e/plugin/plugin_test.go:122): refactor the code to reduce the complexity
+//
 //nolint:gocyclo
 func (ref *ParseReference) parseParameters(capName string, paraValue cue.Value, paramKey string, depth int, containSuffix bool) (string, []ConsoleReference, error) {
 	var doc string
